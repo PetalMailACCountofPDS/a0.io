@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutor零基础入门 - 给妈妈的编程课</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .main-content {
+            flex: 3;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #2575fc;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f4f8;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h2 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .metaphor-box {
+            background-color: #e8f4ff;
+            border-left: 5px solid #2575fc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background-color: #2575fc;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .code-example {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .code-explain {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: #2575fc;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: #1a68e8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(37, 117, 252, 0.3);
+        }
+        
+        .button-secondary {
+            background-color: #6c757d;
+        }
+        
+        .button-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .visualization {
+            background-color: #f9f9f9;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box {
+            width: 80px;
+            height: 60px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .arrow {
+            font-size: 1.5rem;
+            color: #2575fc;
+            margin: 0 10px;
+        }
+        
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .tip-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffd166;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #2575fc;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .flow-container {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-chalkboard-teacher"></i> Python Tutor 零基础入门</h1>
+        <p class="subtitle">给妈妈的编程课 - 用生活化比喻学习编程概念，即使不懂if语句也能学会</p>
+    </div>
+    
+    <div class="container">
+        <div class="main-content">
+            <!-- 什么是Python Tutor -->
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> 什么是Python Tutor？</h2>
+                <p>Python Tutor是一个免费的在线工具，它能把代码执行过程像<strong>做菜的慢动作回放</strong>一样展示出来，让您看到程序每一步在做什么。</p>
+                
+                <div class="metaphor-box">
+                    <h3><i class="fas fa-utensils"></i> 生活化比喻</h3>
+                    <p>想象一下学做鱼香肉丝：如果只看菜谱，您可能不知道什么时候该下油、什么时候放肉、炒多久。Python Tutor就像一位站在您身边的厨师，不仅告诉您步骤，还把每个动作都放慢，让您看清锅里发生了什么变化。</p>
+                </div>
+                
+                <p>对于编程新手，最大的困难是：代码写出来了，但不知道它到底是怎么运行的。Python Tutor完美解决了这个问题！</p>
+                
+                <div class="tip-box">
+                    <p><i class="fas fa-lightbulb"></i> <strong>重要提示：</strong>您不需要先学会编程再使用这个工具，相反，它是帮助您理解编程的最佳助手！</p>
+                </div>
+            </div>
+            
+            <!-- 如何使用Python Tutor -->
+            <div class="card">
+                <h2><i class="fas fa-laptop-code"></i> 如何使用Python Tutor？</h2>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>访问网站</h3>
+                        <p>打开浏览器，访问 <a href="https://pythontutor.com/visualize.html#mode=edit" target="_blank">pythontutor.com</a>（或搜索"Python Tutor"）。</p>
+                        <p>您会看到一个简单的界面，左边可以写代码，右边是可视化区域。</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>输入简单的代码</h3>
+                        <p>从最简单的代码开始，比如：</p>
+                        <div class="code-example">
+                            # 我的第一个Python程序<br>
+                            姓名 = "妈妈"<br>
+                            年龄 = 50<br>
+                            print("你好，" + 姓名)<br>
+                            print("你今年" + str(年龄) + "岁了")
+                        </div>
+                        <div class="code-explain">
+                            <p><i class="fas fa-check-circle"></i> 这段代码做了三件事：</p>
+                            <ol>
+                                <li>创建一个叫"姓名"的盒子，里面放入"妈妈"</li>
+                                <li>创建一个叫"年龄"的盒子，里面放入50</li>
+                                <li>把这两个盒子的内容组合成一句话打印出来</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>点击"Visualize Execution"按钮</h3>
+                        <p>输入代码后，点击页面上的<strong>"Visualize Execution"</strong>（可视化执行）按钮。</p>
+                        <p>这时工具会开始演示代码的执行过程，您会看到右边区域出现动画效果。</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>一步步前进</h3>
+                        <p>点击<strong>"Forward"</strong>（前进）按钮，让代码一步一步执行。</p>
+                        <p>每点一次，您就能看到：</p>
+                        <ul>
+                            <li>当前执行到了哪一行（左边会高亮显示）</li>
+                            <li>变量（那些"盒子"）里装了什么</li>
+                            <li>程序的输出结果是什么</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://pythontutor.com/visualize.html#mode=edit" target="_blank" class="button"><i class="fas fa-external-link-alt"></i> 立即尝试 Python Tutor</a>
+            </div>
+            
+            <!-- 那些陌生的概念 -->
+            <div class="card">
+                <h2><i class="fas fa-question-circle"></i> 那些陌生的编程概念是什么意思？</h2>
+                
+                <h3><i class="fas fa-random"></i> if...elif...else 语句</h3>
+                <div class="metaphor-box">
+                    <p><strong>生活比喻：</strong> 就像出门前的决策过程</p>
+                    <p>如果(if)下雨 → 带伞<br>
+                       要不然如果(elif)阴天 → 带帽子<br>
+                       否则(else) → 戴太阳镜</p>
+                </div>
+                
+                <p>在Python Tutor中看if语句的执行：</p>
+                <div class="code-example">
+                    # 判断天气该带什么<br>
+                    天气 = "下雨"<br><br>
+                    if 天气 == "下雨":<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print("带伞")<br>
+                    elif 天气 == "阴天":<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print("带帽子")<br>
+                    else:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print("戴太阳镜")
+                </div>
+                
+                <div class="visualization">
+                    <p>用Python Tutor运行这段代码，您会看到：</p>
+                    <div class="flow-container">
+                        <div class="box">天气="下雨"</div>
+                        <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="box">检查if条件</div>
+                        <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="box" style="background-color:#2575fc;">执行: print("带伞")</div>
+                    </div>
+                    <p>程序会跳过elif和else部分，直接执行if里面的代码</p>
+                </div>
+                
+                <h3><i class="fas fa-redo"></i> for...in... 循环</h3>
+                <div class="metaphor-box">
+                    <p><strong>生活比喻：</strong> 就像处理购物清单</p>
+                    <p>购物清单 = [鸡蛋, 牛奶, 面包]<br>
+                       for 物品 in 购物清单:<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;把物品放进购物车</p>
+                </div>
+                
+                <div class="code-example">
+                    # 统计钱包里100元钞票的数量<br>
+                    钱包 = [100, 50, 100, 20, 100]<br>
+                    一百元数量 = 0<br><br>
+                    for 钞票 in 钱包:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if 钞票 == 100:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一百元数量 = 一百元数量 + 1<br><br>
+                    print("100元钞票有", 一百元数量, "张")
+                </div>
+                
+                <p>在Python Tutor中，您会看到：</p>
+                <ol>
+                    <li>一个叫"钞票"的小手指，依次指向钱包列表中的每个数字</li>
+                    <li>每遇到100，计数器"一百元数量"就增加1</li>
+                    <li>最后显示总数</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="card">
+                <h2><i class="fas fa-road"></i> 学习路径</h2>
+                <ol>
+                    <li>从最简单的print开始</li>
+                    <li>学习变量（就像贴标签的盒子）</li>
+                    <li>尝试if语句（做选择）</li>
+                    <li>学习for循环（重复做事情）</li>
+                    <li>组合使用这些概念</li>
+                </ol>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-keyboard"></i> 常用操作</h2>
+                <p><strong>运行代码：</strong> 点击"Visualize Execution"</p>
+                <p><strong>单步执行：</strong> 点击"Forward"前进</p>
+                <p><strong>重新开始：</strong> 点击"Restart"</p>
+                <p><strong>编辑代码：</strong> 直接修改左边代码框</p>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-comments"></i> 常见问题</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: 需要先安装什么软件吗？</div>
+                    <p>A: 完全不需要！Python Tutor是网站，打开浏览器就能用。</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: 需要记住很多命令吗？</div>
+                    <p>A: 不需要！只需记住最常用的5-10个单词，如print、if、for等。</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: 写错了代码怎么办？</div>
+                    <p>A: 完全正常！Python Tutor会显示错误信息，告诉您哪里出错了，这是学习的一部分。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-heart"></i> 给妈妈的学习建议</h2>
+                <ul>
+                    <li>每天只学15-20分钟，不要贪多</li>
+                    <li>从修改示例代码开始，而不是从头写</li>
+                    <li>把编程当成游戏，错误是正常的</li>
+                    <li>用生活中的例子理解概念</li>
+                    <li>有问题随时问孩子或朋友</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 实践部分 -->
+    <div class="card">
+        <h2><i class="fas fa-flask"></i> 现在就来试一试！</h2>
+        <p>复制下面的代码到Python Tutor中，然后一步步运行，看看发生了什么：</p>
+        
+        <div class="code-example">
+            # 妈妈的第一份Python代码<br>
+            家庭成员 = ["爸爸", "妈妈", "孩子"]<br><br>
+            print("我们家有", len(家庭成员), "口人")<br><br>
+            for 某人 in 家庭成员:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if 某人 == "妈妈":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(某人 + "正在学习编程！")<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(某人 + "支持妈妈学习！")
+        </div>
+        
+        <p>点击下面的按钮直接打开Python Tutor：</p>
+        <a href="https://pythontutor.com/visualize.html#mode=edit" target="_blank" class="button"><i class="fas fa-rocket"></i> 打开 Python Tutor</a>
+        <button class="button button-secondary" onclick="copyCode()"><i class="far fa-copy"></i> 复制示例代码</button>
+    </div>
+    
+    <footer>
+        <p>© 2023 Python Tutor零基础教学 | 用爱心和耐心教妈妈学编程</p>
+        <p>记住：学习编程就像学做饭，从简单的菜开始，慢慢就能做出一桌大餐！</p>
+    </footer>
+    
+    <script>
+        // 复制代码到剪贴板的功能
+        function copyCode() {
+            const code = `# 妈妈的第一份Python代码
+家庭成员 = ["爸爸", "妈妈", "孩子"]
+
+print("我们家有", len(家庭成员), "口人")
+
+for 某人 in 家庭成员:
+    if 某人 == "妈妈":
+        print(某人 + "正在学习编程！")
+    else:
+        print(某人 + "支持妈妈学习！")`;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                alert("示例代码已复制到剪贴板！现在可以粘贴到Python Tutor中了。");
+            });
+        }
+        
+        // 常见问题点击展开功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                } else {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
